@@ -18,16 +18,16 @@ public class MovieController {
     MovieService movieService;
 
     @PostMapping
-    public ResponseEntity<Movie> addMovies(@RequestBody Movie movie) {
+    public ResponseEntity<String> addMovies(@RequestBody Movie movie) {
         movieService.addMovies(movie);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Movie has been added!", HttpStatus.ACCEPTED);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable long id) {
         Optional<Movie> movie = movieService.getMovieById(id);
         assert movie.isPresent();
-        return new ResponseEntity<>(movie.get(), HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>(movie.get(), HttpStatus.OK);
     }
 
     @GetMapping
