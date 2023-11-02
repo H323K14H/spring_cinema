@@ -25,6 +25,9 @@ public class Movie {
         this.duration = duration;
     }
 
+    public Movie() {
+    }
+
     public long getId() {
         return id;
     }
