@@ -25,9 +25,16 @@ public class MovieController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable long id) {
-        Optional<Movie> movie = movieService.getMovieById(id);
-        assert movie.isPresent();
-        return new ResponseEntity<>(movie.get(), HttpStatus.OK);
+        try {
+            Optional<Movie> movie = movieService.getMovieById(id);
+            if (movie.isPresent()) {
+                return new ResponseEntity<>(movie.get(), HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping
