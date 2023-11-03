@@ -18,9 +18,9 @@ public class MovieController {
     MovieService movieService;
 
     @PostMapping
-    public ResponseEntity<String> addMovies(@RequestBody Movie movie) {
+    public ResponseEntity<Movie> addMovies(@RequestBody Movie movie) {
         movieService.addMovies(movie);
-        return new ResponseEntity<>("Movie has been added!", HttpStatus.CREATED);
+        return new ResponseEntity<>(movie, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}")
@@ -31,9 +31,9 @@ public class MovieController {
     }
 
     @GetMapping
-    public ResponseEntity<Movie> getMovies() {
+    public ResponseEntity<List<Movie>> getMovies() {
         List<Movie> movies = movieService.getAllMovies();
-        return new ResponseEntity<>((Movie) movies, HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>(movies, HttpStatus.I_AM_A_TEAPOT);
     }
 
 
