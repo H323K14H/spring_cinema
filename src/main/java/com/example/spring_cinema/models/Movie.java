@@ -14,12 +14,12 @@ public class Movie {
     private String title;
 
     @Column(name = "Rating:")
-    private int rating;
+    private String rating;
 
     @Column(name = "Duration (minutes):")
     private int duration;
 
-    public Movie(String title, int rating, int duration) {
+    public Movie(String title, String rating, int duration) {
         this.title = title;
         this.rating = rating;
         this.duration = duration;
@@ -44,11 +44,11 @@ public class Movie {
         this.title = title;
     }
 
-    public int getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
